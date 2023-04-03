@@ -1,5 +1,7 @@
 import EventEmitter from "./EventEmitter"
+import * as THREE from "three"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'  
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 
 export default class Resources extends EventEmitter {
     constructor(sources) {
@@ -19,16 +21,32 @@ export default class Resources extends EventEmitter {
     setLoader() {
         this.loaders = {}
         this.loadingManager = null // LoadingManager 
-        this.loaders.gltfLoader = new GLTFLoader(this.loadingManager)
+        this.loaders.gltfLoader = new GLTFLoader(
+            // this.loadingManager
+        )
+        this.loaders.textureLoader = new THREE.TextureLoader(
+            // this.loadingManager
+        )
+        this.loaders.fontLoader = new FontLoader(
+            // this.loadingManager
+        )
     }
 
     startLoading() {
         // Load each source
-        for(const source of this.sources)
-        {
+        for(const source of this.sources) {
             if(source.type === 'gltfModel')
             {
                 this.loaders.gltfLoader.load(
+                    source.path,
+                    (file) => {
+                        this.sourceLoaded(source, file)
+                    }
+                )
+            }
+            else if(source.type === 'texture')
+            {
+                this.loaders.textureLoader.load(
                     source.path,
                     (file) =>
                     {
@@ -36,16 +54,16 @@ export default class Resources extends EventEmitter {
                     }
                 )
             }
-            // else if(source.type === 'texture')
-            // {
-            //     this.loaders.textureLoader.load(
-            //         source.path,
-            //         (file) =>
-            //         {
-            //             this.sourceLoaded(source, file)
-            //         }
-            //     )
-            // }
+            else if(source.type === 'font')
+            {
+                this.loaders.fontLoader.load(
+                    source.path,
+                    (file) =>
+                    {
+                        this.sourceLoaded(source, file)
+                    }
+                )
+            }
             // else if(source.type === 'cubeTexture')
             // {
             //     this.loaders.cubeTextureLoader.load(

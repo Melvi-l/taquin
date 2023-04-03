@@ -1,13 +1,23 @@
 import * as THREE from "three"
+import { AmbientLight } from "three"
 
 import Experience from "../Experience"
+import Animations from "./animation/Animations"
+import ButtonControls from "./controls/ButtonControls"
+import Controls from "./controls/Controls"
+import Light from "./Light"
+import Taquin from "./taquin/Taquin"
 
 export default class World {
     constructor() {
         this.experience = new Experience()
+        this.resources = this.experience.resources
         this.scene = this.experience.scene
-        // Test
-        const test = new THREE.Mesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshBasicMaterial())
-        this.scene.add(test)
     }
+    load() {
+        this.taquin = new Taquin()
+        this.light = new Light()
+        this.animations = new Animations()
+        this.controls = new Controls()
+    } 
 }

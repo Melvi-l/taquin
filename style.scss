@@ -1,13 +1,189 @@
-*
-{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+// Variable
+$light: hsl(0, 0%, 85%);
+$light70: rgba(241, 241, 241, 0.7);
+$dark: #0d0d0d;
+
+* {
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
+    overscroll-behavior: none;
+    box-sizing: border-box;
 }
 
-.webgl
-{
-    position: fixed;
+body {
+    color: $light;
+}
+
+body {
+    background: $dark;
+    height: 100svh;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+}
+
+header {
+    position: absolute;
     top: 0;
-    left: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 1.5rem;
+
+    & .console {
+        cursor: pointer;
+    }
+
+    & .menu {
+        cursor: pointer;
+    }
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    & .console-wrapper {
+        height: 100%;
+        width: 70%;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        & .console {
+            height: 70%;
+            width: 100%;
+            padding: 20px;
+            border: 3px #f1f1f133 solid;
+            & .zone {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: start;
+                overflow: hidden;
+                white-space: nowrap;
+                -webkit-mask-image: -webkit-gradient(linear, center 20%, center 5%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+                gap: 10px;
+                & .el {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: start;
+                    align-items: start;
+                    gap: 5px;
+                    font-size: .8rem;
+                    & .time {
+                        opacity: .7;
+                    }
+
+                    &.success {
+                        color: rgb(1, 183, 1);
+                    }
+
+                    &.randomize {
+                        // color: red;
+                    }
+
+                    &.solve {
+                        // color: yellow;
+                    }
+                }
+            }
+        }
+    }
+
+    & .experience-wrapper {
+        height: 100%;
+        width: 100%;
+        // background: red;
+        position: relative;
+    }
+
+    & .menu-wrapper {
+        height: 100%;
+        width: 0%;
+        background: yellow;
+    }
+}
+
+.controls {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    // Animation
+    opacity: 0;
+
+    & .button {
+        font-size: 1.5rem;
+        font-weight: 300;
+        padding-block: 10px;
+        padding-inline: 24px;
+        text-transform: uppercase;
+        border: $light 3px solid;
+
+        &.randomize {
+            color: $light;
+        }
+
+        &.solve {
+            background: $light;
+            color: $dark;
+            font-weight: 400;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+        }
+    }
+
+}
+
+.webgl {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vmin;
+    // height: 90vh;
+    aspect-ratio: 1;
     outline: none;
+    z-index: -1;
+    // display: none
+}
+
+@media screen and (max-width: 600px) {
+    .controls {
+        & .button {
+            font-size: 1.2rem;
+            padding-block: 8px;
+
+            &.solve {}
+        }
+    }
+
+    .webgl {
+        width: 150vmin;
+    }
 }

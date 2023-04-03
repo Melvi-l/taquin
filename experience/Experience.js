@@ -7,6 +7,8 @@ import Renderer from "./Renderer";
 import World from "./world/World";
 import Resources from "./utils/Resources";
 import sources from "./sources";
+import GUI from "./utils/Debug";
+import Logger from "./utils/Logger";
 
 let instance = null;
 
@@ -29,12 +31,15 @@ export default class Experience {
          */ 
 
         // Utils
-        this.sizes = new Sizes()
+        this.debug = new GUI()
+        this.logger = new Logger()
+        this.sizes = new Sizes(this.canvas)
         this.time = new Time()
         this.resources = new Resources(sources)
 
         // General
         this.scene = new THREE.Scene()
+        this.scene.background = null
         this.camera = new Camera() 
         this.renderer = new Renderer()
 
@@ -58,6 +63,6 @@ export default class Experience {
     }
 
     load() {
-
+        this.world.load()
     }
 }

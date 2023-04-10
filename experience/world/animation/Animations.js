@@ -21,7 +21,7 @@ export default class Animations {
         this.tl.to(this.camera.instance.position, {
             duration: DURATION,
             x: 0,
-            y: 30,
+            y: 35,
             z: 0,
             ease: "power2.inOut",
         }, "init")
@@ -39,7 +39,6 @@ export default class Animations {
             y: 45,
             ease: "linear"
         }, "split")
-        console.log(this.taquin.base)
         this.tl.to(this.taquin.base.position, {
             duration: .7,  
             y: - 7,
@@ -78,11 +77,6 @@ export default class Animations {
             y: 0,
             ease: "power1.inOut"
         }, "unsplit")
-        this.tl.to(this.camera.instance.position, {
-            duration: 1,
-            y: 30,
-            ease: "linear"
-        }, "unsplit+=.3")
         // Set Up
         this.tl.to(this.camera.instance.position, {
             duration: DURATION,
@@ -100,13 +94,13 @@ export default class Animations {
     }
     addBeak(duration) {
         this.tl.addPause(null, () => {
-            console.log("end break")
             gsap.delayedCall(duration, () => this.tl.play())
         })
     }
     setUpUI() {
         document.querySelector(".controls").classList.add("active")
         document.querySelector("header").classList.add("visible")
-        document.querySelector(".main-wrapper").classList.add("visible")
+        document.querySelector(".help").classList.add("visible")
+        this.experience.world.controls.disabled(false)
     }
 }

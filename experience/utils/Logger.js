@@ -17,7 +17,6 @@ export default class Logger {
         this.log("solve", `Solve...`)
     }
     log(type, detail) {
-        console.log(this.console.scrollHeight,this.console.clientHeight)
         if (this.console.scrollHeight > this.console.clientHeight || this.console.scrollWidth > this.console.clientWidth) {
         }
         while (this.console.children.length>15) {

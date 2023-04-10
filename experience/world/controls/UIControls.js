@@ -1,15 +1,15 @@
-import { Raycaster } from "three";
 import Experience from "../../Experience";
 import EventEmitter from "../../utils/EventEmitter";
-import ControlsAnimations from "../animation/ControlsAnimations";
 import TileRaycaster from "../TileRaycaster";
 
 export default class UIControls extends EventEmitter {
-    constructor() {
+    constructor(controlAnimation) {
         super()
         this.experience = new Experience()
         // Setup
         this.isMenuOpen = false
+        this.abled = true
+        this.animations = controlAnimation
         this.console = document.querySelector(".console-wrapper")
         this.consoleButton = document.querySelector(".console")
         this.menu = document.querySelector(".menu-wrapper")
@@ -47,39 +47,42 @@ export default class UIControls extends EventEmitter {
         this.trigger("abled")
     }
     openConsole() {
-        if (this.isMenuOpen) {
-            this.menu.classList.remove("active")
-            this.experience.world.raycaster.dispose()
-            this.experience.world.raycaster = null
-            this.isMenuOpen = false
+        if (this.abled) {
+            if (this.isMenuOpen) {
+                this.menu.classList.remove("active")
+                this.experience.world.raycaster.dispose()
+                this.experience.world.raycaster = null
+                this.isMenuOpen = false
+            }
+            this.console.classList.toggle("active")
+            window.setTimeout(() => {
+                this.experience.sizes.update()
+            }, 500)
         }
-        this.console.classList.toggle("active")
-        window.setTimeout(() => {
-            this.experience.sizes.update()
-        }, 500)
     }
     openMenu() {
-        if (this.isMenuOpen) {
-            this.menu.classList.remove("active")
-            this.experience.world.raycaster.dispose()
-            this.experience.world.raycaster = null
-            this.experience.canvas.classList.remove("menu")
-            window.setTimeout(() => {
-                this.experience.sizes.update()
-            }, 500)
-        } else {
-            this.menu.classList.add("active")
-            this.experience.world.raycaster = new TileRaycaster()
-            window.setTimeout(() => {
-                this.experience.canvas.classList.add("menu")
-                this.experience.sizes.update()
-            }, 500)
+        if (this.abled) {
+            if (this.isMenuOpen) {
+                this.menu.classList.remove("active")
+                this.experience.world.raycaster.dispose()
+                this.experience.world.raycaster = null
+                this.experience.canvas.classList.remove("menu")
+                window.setTimeout(() => {
+                    this.experience.sizes.update()
+                }, 500)
+            } else {
+                this.menu.classList.add("active")
+                this.experience.world.raycaster = new TileRaycaster()
+                window.setTimeout(() => {
+                    this.experience.canvas.classList.add("menu")
+                    this.experience.sizes.update()
+                }, 500)
+            }
+            this.isMenuOpen = !this.isMenuOpen
+            this.console.classList.remove("active")
         }
-        this.isMenuOpen = !this.isMenuOpen
-        this.console.classList.remove("active")
     }
     disabled(bool) {
-        this.randomizeButton.disabled = bool
-        this.solveButton.disabled = bool
+        this.abled = !bool
     }
 }

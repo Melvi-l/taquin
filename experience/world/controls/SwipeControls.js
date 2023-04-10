@@ -1,11 +1,10 @@
 import EventEmitter from "../../utils/EventEmitter";
-import ControlsAnimations from "../animation/ControlsAnimations";
 
 export default class SwipeControls extends EventEmitter {
-    constructor() {
+    constructor(controlAnimation) {
         super()
         this.abled = true
-        this.animations = new ControlsAnimations()
+        this.animations = controlAnimation
         // Setup
         this.setListener()
     }

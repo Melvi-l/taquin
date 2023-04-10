@@ -16,7 +16,6 @@ export default class ButtonControls extends EventEmitter {
         this.solveButton.addEventListener("click", () => this.solve())
     }
     async randomize() {
-        console.log("random")
         this.trigger("disabled")
         await this.animations.randomize()
         this.trigger("abled")

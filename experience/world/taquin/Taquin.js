@@ -14,7 +14,6 @@ export default class Taquin {
         this.placeTileElevation()
     }
     isSuccess() {
-        console.log(this.tileList.every((tileGroup) => tileGroup.index == tileGroup.positionIndex))
         return this.tileList.every((tileGroup) => tileGroup.index == tileGroup.positionIndex)
     }
     setBase() {

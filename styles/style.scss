@@ -12,6 +12,7 @@ $gray: #1f1f1f;
     padding: 0;
     overscroll-behavior: none;
     box-sizing: border-box;
+    user-select: none;
 }
 
 a {
@@ -20,11 +21,17 @@ a {
 }
 
 body {
+    overflow: hidden;
     color: $light;
     background: $dark;
+}
+
+.wrapper {
+    height: 100vh;
     height: 100svh;
-    width: 100%;
     overflow: hidden;
+    width: 100%;
+    position: relative;
 }
 
 button {
@@ -56,13 +63,21 @@ header {
     padding: 0 16px;
     font-size: 1.5rem;
     z-index: 10;
-
+    // Animation
+    transform: translateY(-20%);
+    opacity: 0;
     & .console {
         cursor: pointer;
     }
 
     & .menu {
         cursor: pointer;
+    }
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0%);
+        transition: all .3s ease-in;
     }
 }
 
@@ -208,6 +223,14 @@ header {
     justify-content: end;
     align-items: end;
     gap: 16px;
+    // Animation
+    opacity: 0;
+    transform: translateX(30%);
+    &.visible {
+        opacity: 1;
+        transform: translateX(0%);
+        transition: all .3s .2s ease-in;
+    }
 
     &-button {
         border: $light 2px solid;
@@ -269,7 +292,7 @@ header {
     &.active {
         bottom: 10%;
         opacity: 1;
-        transition: all .2s ease-in;    
+        transition: all .3s .1s ease-in;    
     }
 
     & .button {

@@ -19,7 +19,6 @@ export default class BoardAnimation {
         })
     }
     moveTile(index, direction, label) {
-        console.log(index, direction)
         const tile = this.tilePositionList.find((tilePosition) => tilePosition.tileGroup.index == index)
         // Update currentPosition
         tile.currentPosition.x += (direction=="right")*3.05 - (direction=="left")*3.05
@@ -36,7 +35,6 @@ export default class BoardAnimation {
         return this.tl
     }
     fillTimeline(moveIterator) {
-        console.log(moveIterator)
         let move = moveIterator.next()
         while (!move.done) {
             this.moveTile(move.value.targetIndex, move.value.direction)

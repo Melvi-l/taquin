@@ -117,7 +117,6 @@ export default class BoardAnimations {
     async moveEmptyTile(direction) {
         const board = new BoardAdapter(this.tileList)
         const emptyTilePosition = board.emptyTilePosition
-        console.log(emptyTilePosition)
         switch (direction) {
             case "down":
                 try {

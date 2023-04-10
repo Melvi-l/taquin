@@ -46,7 +46,6 @@ export default class Board {
         do {
             array = Array(SIZE ** 2).fill().map((_, index) => index).sort((a, b) => 0.5 - Math.random())
         } while (bitNbInv.getInvCount(array.filter((val) => val!=0))%2)
-        console.log(array)
         return array
     }
     getTile(row, column) {

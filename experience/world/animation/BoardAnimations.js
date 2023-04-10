@@ -8,11 +8,13 @@ const DIPLACEMENT = 3.05
 
 export default class BoardAnimations {
     constructor(tileList, duration) {
-        console.log(duration)
         this.logger = new Experience().logger
         this.tileList = tileList
         this.duration = duration
-        this.tilePositionList = tileList.map((tileGroup) => {
+        this.setTilePositionList()
+    }
+    setTilePositionList() {
+        this.tilePositionList = this.tileList.map((tileGroup) => {
             return {
                 tileGroup,
                 currentPosition: tileGroup.group.position.clone()
@@ -24,6 +26,8 @@ export default class BoardAnimations {
         // Update currentPosition
         tile.currentPosition.x += (direction == "right") * 3.05 - (direction == "left") * 3.05
         tile.currentPosition.z += (direction == "down") * 3.05 - (direction == "up") * 3.05
+        // Update position index    
+        tile.tileGroup.positionIndex += (direction == "right") * 1 + (direction == "left") * -1 + (direction == "up") * - 3 + (direction == "down") * 3 
         // Animate
         return new Promise((resolve) => {
             gsap.to(tile.tileGroup.group.position, {
@@ -42,6 +46,8 @@ export default class BoardAnimations {
         // Update currentPosition
         tile.currentPosition.x += (direction == "right") * 3.05 - (direction == "left") * 3.05
         tile.currentPosition.z += (direction == "down") * 3.05 - (direction == "up") * 3.05
+        // Update position index
+        tile.tileGroup.positionIndex += (direction == "right") * 1 + (direction == "left") * -1 + (direction == "up") * - 3 + (direction == "down") * 3 
         // Animate
         this.tl.to(tile.tileGroup.group.position, {
             duration: this.duration,
@@ -59,7 +65,6 @@ export default class BoardAnimations {
         return this.tl
     }
     fillTimeline(moveIterator) {
-        console.log(moveIterator)
         let move = moveIterator.next()
         while (!move.done) {
             this.addTileMoveToTimeline(move.value.targetIndex, move.value.direction)
@@ -112,6 +117,7 @@ export default class BoardAnimations {
     async moveEmptyTile(direction) {
         const board = new BoardAdapter(this.tileList)
         const emptyTilePosition = board.emptyTilePosition
+        console.log(emptyTilePosition)
         switch (direction) {
             case "down":
                 try {

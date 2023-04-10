@@ -7,6 +7,7 @@ import ButtonControls from "./controls/ButtonControls"
 import Controls from "./controls/Controls"
 import Light from "./Light"
 import Taquin from "./taquin/Taquin"
+import TileRaycaster from "./TileRaycaster"
 
 export default class World {
     constructor() {
@@ -19,5 +20,11 @@ export default class World {
         this.light = new Light()
         this.animations = new Animations()
         this.controls = new Controls()
+        this.raycaster = null
     } 
+    update() {
+        if (this.raycaster) {
+            this.raycaster.update()
+        }
+    }
 }

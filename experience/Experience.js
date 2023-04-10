@@ -53,6 +53,7 @@ export default class Experience {
     }
 
     resize() {
+        console.log("resize")
         this.camera.resize()
         this.renderer.resize()
     }
@@ -60,6 +61,7 @@ export default class Experience {
     update() {
         this.camera.update()
         this.renderer.update()
+        this.world.update()
     }
 
     load() {

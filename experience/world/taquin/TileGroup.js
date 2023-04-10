@@ -14,6 +14,7 @@ export default class TileGroup {
 
     setTile(tileObject) {
         this.tile = tileObject.clone()
+        this.tile.userData.index = this.index
 
         // Shadow
         this.tile.castShadow = true
@@ -67,6 +68,7 @@ export default class TileGroup {
     }
 
     placeTile(index) {
+        this.positionIndex = index
         this.group.position.x =
             3.05 * ((index - 1) % 3 - 1)
 

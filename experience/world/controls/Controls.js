@@ -1,4 +1,5 @@
 import EventEmitter from "../../utils/EventEmitter";
+import UIControls from "./UIControls";
 import ButtonControls from "./ButtonControls";
 import KeyboardControls from "./KeyboardControls";
 import SwipeControls from "./SwipeControls";
@@ -8,6 +9,7 @@ export default class Controls {
         this.buttonControls = new ButtonControls()
         this.keyboardControls = new KeyboardControls()
         this.swipeControls = new SwipeControls()
+        this.uiControls = new UIControls()
         this.setListener()
     }
     setListener() {

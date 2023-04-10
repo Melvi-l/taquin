@@ -13,6 +13,8 @@ export default class ControlsAnimations {
         this.logger = this.experience.logger
         this.taquin = this.experience.world.taquin
         this.duration = duration
+
+        this.animation = new BoardAnimations(this.taquin.tileList, this.duration)
     }
     async randomize() {
         const DURATION = 1
@@ -29,8 +31,8 @@ export default class ControlsAnimations {
                 onComplete: () => resolve()
             })
             gsap.delayedCall(DURATION/2, () => {
-                console.log(this.taquin)
                 this.taquin.placeTile(Board.getRandomArray())
+                this.animation.setTilePositionList()
             })
             this.logger.logRandomize()
         })
@@ -38,9 +40,8 @@ export default class ControlsAnimations {
     }
     async solve() {
         this.logger.logSolve()
-        console.log(this.duration)
-        const tl = new BoardAnimations(this.taquin.tileList, this.duration).animateTo()
         return new Promise((resolve) => {
+            const tl = this.animation.animateTo()
             tl.eventCallback("onComplete", () => {
                 this.logger.logSucces()
                 resolve()
@@ -49,6 +50,9 @@ export default class ControlsAnimations {
         })
     }
     async moveEmptyTile(direction) {
-        await new BoardAnimations(this.taquin.tileList, this.duration).moveEmptyTile(direction)
+        await this.animation.moveEmptyTile(direction)
+        if (this.taquin.isSuccess()) {
+            this.logger.logSucces()
+        }
     }
 }

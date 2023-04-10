@@ -13,6 +13,10 @@ export default class Taquin {
         this.setTileList()
         this.placeTileElevation()
     }
+    isSuccess() {
+        console.log(this.tileList.every((tileGroup) => tileGroup.index == tileGroup.positionIndex))
+        return this.tileList.every((tileGroup) => tileGroup.index == tileGroup.positionIndex)
+    }
     setBase() {
         this.base = this.resources.items.base.scene.children[0]
         this.base.material.normalScale.setScalar(3)

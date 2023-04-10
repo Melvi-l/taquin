@@ -9,7 +9,6 @@ export default class ButtonControls extends EventEmitter {
         // Setup
         this.randomizeButton = document.querySelector(".button.randomize")
         this.solveButton = document.querySelector(".button.solve")
-        console.log(this.randomizeButton)
         this.setListener()
     }
     setListener() {

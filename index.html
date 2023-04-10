@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Name</title>
-    <link rel="stylesheet" href="./style.scss">
+    <link rel="stylesheet" href="./styles/style.scss">
 </head>
 
 <body>
+    <div class="demo">A three.js demo</div>
     <header>
-        <div class="console">> Console_</div>
-        <div class="menu">Menu</div>
+        <button class="console">> Console_</button>
+        <button class="menu">Menu</button>
     </header>
     <div class="main-wrapper">
         <div class="console-wrapper">
@@ -28,6 +29,64 @@
             <canvas class="webgl"></canvas>
         </div>
         <div class="menu-wrapper">
+            <nav>
+                <a href="content.html#introduction" class="nav-link" data-index="1">
+                    <div class="number">01.</div>
+                    <div class="text">Introduction</div>
+                </a>
+                <a href="content.html#solvability" class="nav-link" data-index="2">
+                    <div class="number">02.</div>
+                    <div class="text">Solvability</div>
+                </a>
+                <a href="content.html#distance" class="nav-link" data-index="3">
+                    <div class="number">03.</div>
+                    <div class="text">Distance</div>
+                </a>
+                <a href="content.html#neighbors" class="nav-link" data-index="4">
+                    <div class="number">04.</div>
+                    <div class="text">Neighbors</div>
+                </a>
+                <a href="content.html#" class="nav-link" data-index="5">
+                    <div class="number">05.</div>
+                    <div class="text">Incomming</div>
+                </a>
+                <a href="content.html#" class="nav-link" data-index="6">
+                    <div class="number">06.</div>
+                    <div class="text">Incomming</div>
+                </a>
+                <a href="content.html#" class="nav-link" data-index="7">
+                    <div class="number">07.</div>
+                    <div class="text">Incomming</div>
+                </a>
+                <a href="content.html#" class="nav-link" data-index="8">
+                    <div class="number">08.</div>
+                    <div class="text">Incomming</div>
+                </a>
+            </nav>
+        </div>
+        <div class="help">
+            <div class="commands">
+                <div class="command arrow">
+                    <div class="icon">arrow</div> : move the tiles
+                </div>
+                <div class="command arrow">
+                    <div class="icon">S</div> : solve the taquin
+                </div>
+                <div class="command arrow">
+                    <div class="icon">R</div> : randomize the taquin
+                </div>
+                <div class="command arrow">
+                    <div class="icon">C</div> : open the console
+                </div>
+                <div class="command arrow">
+                    <div class="icon">M</div> : open the menu
+                </div>
+            </div>
+            <div class="help-button">
+                <div>
+                    ?
+                </div>
+            </div>
         </div>
     </div>
     <script type="module" src="./script.js"></script>

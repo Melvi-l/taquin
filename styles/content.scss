@@ -1,0 +1,76 @@
+// Variable
+$light: #F1F1F1;
+$light70: rgba(241, 241, 241, 0.7);
+$dark: #151515;
+$big: 3rem;
+$medium: 2rem;
+$small-title: 1.5rem;
+$small: 1.1rem;
+
+// Reset css
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: $light;
+    text-decoration: none;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    background: $dark;
+    color: $light;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+}
+
+h1 {
+    margin: 16px;
+    font-size: $big;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+section {
+    margin: 16px;
+    & .title {
+        display: flex;
+        align-items: baseline;
+        font-weight: 500;
+        & .number {
+            font-size: $big;
+        }
+    
+        & .text {
+            font-size: $medium;
+        }
+    }
+    
+    & .content {
+        .textblock {
+            margin: 16px;   
+            & .label {
+                opacity: 1;
+                font-size: $small-title;
+            }
+        
+            & .text {
+                color: $light70;
+                font-size: $small;
+        
+                & .highlight, a {
+                    color: $light;
+                    font-weight: 400;
+                }
+        
+                & a {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

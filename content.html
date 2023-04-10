@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Name</title>
+    <link rel="stylesheet" href="./styles/content.scss">
+</head>
+
+<body>
+    <header>
+        <h1>Taquin</h1>
+    </header>
+    <section id="introduction">
+        <div class="title">
+            <div class="number">01.</div>
+            <div class="text">Introduction</div>
+        </div>
+        <div class="content">
+            <div class="textblock start">
+                <div class="label">
+                    Upgraded README.md
+                </div>
+                <div class="text">
+                    Taquin is a three.js experience. Showing, explaining and detailing a school homework.
+                </div>
+            </div>
+            <div class="textblock   end">
+                <div class="label">
+                    Goal
+                </div>
+                <div class="text">
+                    The purpose of this project is to solve a sliding puzzle, initiate in a random solvable
+                    configuration, by finding the optimal path to the goal configuration.
+                </div>
+            </div>
+            <div class="textblock start">
+                <div class="label">
+                    Solution
+                </div>
+                <div class="text">
+                    To solve it, we are going to use an A* algorithm with a manhattan distance
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="solvability">
+        <div class="title">
+            <div class="number">02.</div>
+            <div class="text">Solvability</div>
+        </div>
+        <div class="content">
+
+            <div class="textblock center">
+                <div class="text">
+                    The solvability criteria is not the same for a <br /> <span class="highlight">odd-sized</span> and
+                    an <span class="highlight">even-sized</span> board
+                </div>
+            </div>
+            <div class="textblock start" id="odd-sized">
+                <div class="label">
+                    Odd-sized
+                </div>
+                <div class="text">
+                    For a Odd-sized board, the solvability criteria is the number of inversion
+                </div>
+                <div class="text">
+                    Indeed, each move change the number of inversion by an even number
+                </div>
+                <div class="text">
+                    Thus, an odd-sized board is solvable only <span class="highlight">if the number of inversion is
+                        even</span>
+                </div>
+            </div>
+                <div class="textblock end">
+                <div class="label">
+                    Even-sized
+                </div>
+                <div class="text">
+                    For a Even-sized board, the solvability criteria is the sum of the number of inversion and the line
+                    of the empty tile
+                </div>
+                <div class="text">
+                    An even-sized board is solvable only <span class="highlight">if the sum of the number of inversion
+                        and the line of the empty tile is odd</span>
+                </div>
+            </div>
+            <div class="textblock start">
+                <div class="label">
+                    Number of inversion
+                </div>
+                <div class="text">
+                    To get the number of inversion, we just gonna use a Fenwick tree (BIT) on a array version of our
+                    board, to slightly improve complexity (from O(n²) to O(n*log(n²)))
+                </div>
+                <div class="text">
+                    more <a href="#">here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="distance">
+        <div class="title">
+            <div class="number">03.</div>
+            <div class="text">Distance</div>
+        </div>
+        <div class="content">
+            <div class="textblock center">
+                <div class="text">
+                    A* algorithm need distance evaluation.
+                </div>
+                <div class="text">
+                    We can use either <span class="highlight">Hamming distance</span> or <span
+                        class="highlight">Manhattan distance</span>.
+                </div>
+            </div>
+            <div class="textblock start">
+                <div class="label">
+                    Hamming
+                </div>
+                <div class="text">
+                    The Hamming distance between a board configuration and the goal configuration is <span
+                        class="highlight">the number of tiles in the wrong position</span>.
+                </div>
+            </div>
+            <div class="textblock end">
+                <div class="label">
+                    Manhattan
+                </div>
+                <div class="text">
+                    The Manhattan distance between a board configuration and the goal configuration is is <span
+                        class="highlight">the sum of the Manhattan distances</span> (sum of the vertical and horizontal
+                    distance) from the tiles to their goal positions.
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+</body> 
+
+</html>

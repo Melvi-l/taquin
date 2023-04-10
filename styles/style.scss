@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+// Variable
+$light: hsl(0, 0%, 85%);
+$light70: rgba(241, 241, 241, 0.7);
+$dark: #0d0d0d;
+$gray: #1f1f1f;
+
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: none;
+    box-sizing: border-box;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+body {
+    color: $light;
+    background: $dark;
+    height: 100svh;
+    width: 100%;
+    overflow: hidden;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+}
+
+.demo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    font-size: calc(1.5vw + 1.5rem);
+    white-space: nowrap;
+    opacity: 0
+}
+
+
+header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 1.5rem;
+    z-index: 10;
+
+    & .console {
+        cursor: pointer;
+    }
+
+    & .menu {
+        cursor: pointer;
+    }
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    & .console-wrapper {
+        height: 100%;
+        width: 0%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+        will-change: width;
+        z-index: 2;
+
+        &.active {
+            width: clamp(0%, 70%, 600px);
+        }
+
+        & .console {
+            height: 70%;
+            width: 90%;
+            margin: 16px;
+            padding: 20px;
+            border: 3px #f1f1f133 solid;
+
+            & .zone {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: start;
+                overflow: hidden;
+                white-space: nowrap;
+                -webkit-mask-image: -webkit-gradient(linear, center 20%, center 5%, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+                gap: 10px;
+
+                & .el {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: start;
+                    align-items: start;
+                    gap: 5px;
+                    font-size: .8rem;
+
+                    & .time {
+                        opacity: .7;
+                    }
+
+                    &.success {
+                        color: rgb(1, 183, 1);
+                    }
+
+                    &.randomize {
+                        // color: red;
+                    }
+
+                    &.solve {
+                        // color: yellow;
+                    }
+                }
+            }
+        }
+    }
+
+    & .experience-wrapper {
+        height: 100%;
+        width: 100%;
+        // background: red;
+        position: relative;
+    }
+
+    & .menu-wrapper {
+        background: $gray;
+        height: 100%;
+        width: 0%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+        will-change: width;
+        z-index: 2;
+
+        &.active {
+            width: clamp(0%, 70%, 600px);
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+
+            a {
+                display: flex;
+                gap: 4px;
+                align-items: baseline;
+                opacity: 0.5;
+                transition: all .2s ease;
+
+                & .number {
+                    font-size: 2.5rem;
+                    font-weight: 800;
+                    color: transparent;
+                    -webkit-text-stroke: $light 1px;
+                }
+
+                & .text {
+                    font-size: 1.5rem;
+                }
+
+                // &:hover {
+                //     opacity: 1;
+                //     transform: translateX(20px);
+                // }
+                &.active {
+                    opacity: 1;
+                    transform: translateX(20px);
+                }
+            }
+        }
+    }
+}
+
+.help {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    gap: 16px;
+
+    &-button {
+        border: $light 2px solid;
+        height: 40px;
+        aspect-ratio: 1;
+        border-radius: 100%;
+        display: grid;
+        place-items: center;
+        color: $light;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        padding-left: 2px;
+    }
+
+    .commands {
+        background: $gray;
+        padding: 12px;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 8px;
+        border-radius: 10px;
+
+        & .command {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: start;
+            gap: 4px;
+
+            & .icon {
+                padding: 0px 8px;
+                background: $dark;
+                border-radius: 5px;
+            }
+        }
+
+        &.active {
+            opacity: 1;
+        }
+    }
+}
+
+.controls {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8%;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    // Animation
+    opacity: 0;
+
+    &.active {
+        bottom: 10%;
+        opacity: 1;
+        transition: all .2s ease-in;    
+    }
+
+    & .button {
+        font-size: 1.5rem;
+        font-weight: 300;
+        padding-block: 10px;
+        padding-inline: 24px;
+        text-transform: uppercase;
+        border: $light 3px solid;
+
+        &.randomize {
+            color: $light;
+        }
+
+        &.solve {
+            background: $light;
+            color: $dark;
+            font-weight: 400;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+        }
+    }
+
+}
+
+.webgl {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vmin;
+    // height: 90vh;
+    aspect-ratio: 1;
+    outline: none;
+    z-index: -1;
+    // display: none
+}
+
+@media screen and (max-width: 600px) {
+    .controls {
+        bottom: 3%;
+        &.active {
+            bottom: 5%;
+        }
+        & .button {
+            font-size: 1.2rem;
+            padding-block: 8px;
+
+            &.solve {}
+        }
+    }
+
+    .main-wrapper {
+        flex-direction: column;
+
+        & .console-wrapper {
+            order: 2;
+            height: 0%;
+            width: 100%;
+            align-items: center;
+            will-change: height;
+            
+            &.active {
+                height: 70%;
+                width: 100%;
+            }
+
+            & .console {
+                height: 90%;
+                width: 90%;
+            }
+        }
+        
+        & .menu-wrapper {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            transform: translateX(100%);
+            &.active {
+                width: 100%;
+                transform: translateX(0%);
+                transition: all .5s ease-in-out;
+            }
+        }
+    }
+
+    .help {
+        display: none;
+    }
+
+    .webgl {
+        height: 150vmin;
+        top: 60%;
+        &.menu {
+            transform: translateY(100%);
+        }
+    }
+}
